@@ -1,16 +1,36 @@
-﻿namespace TriviaQuiz;
+﻿using System.Text.Json;
 
-public partial class MainPage : ContentPage
+namespace TriviaQuiz
 {
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public partial class MainPage : ContentPage
+    {
+        private TriviaViewModel viewModel;
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		
-	}
+        public MainPage()
+        {
+            InitializeComponent();
+
+            viewModel = (TriviaViewModel)BindingContext;
+            LoadNextQuestion();
+
+        }
+
+        private async void OnNextQuestionClicked(object sender, EventArgs e)
+        {
+            await LoadNextQuestion();
+        }
+
+        private void OnOptionClicked(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            viewModel.SelectedAnswer = button.Text;
+        }
+
+        private async Task LoadNextQuestion()
+        {
+            await viewModel.LoadNextQuestion();
+        }
+
+    }
 }
-
