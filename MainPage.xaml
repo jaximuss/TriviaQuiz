@@ -1,35 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:TriviaQuiz"
              x:Class="TriviaQuiz.MainPage">
 
-    <!-- Set the BindingContext to the ViewModel -->
-    <ContentPage.BindingContext>
-        <viewmodels:TriviaViewModel x:Name="viewModel" />
-    </ContentPage.BindingContext>
-
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <StackLayout Spacing="20" Padding="20">
-                <!-- Bind the Label's Text property to the QuestionText property in the ViewModel -->
-                <Label Text="{Binding QuestionText}" FontSize="24" HorizontalOptions="CenterAndExpand" />
-
-                <!-- Bind each Button's Text property to the corresponding element in the Options collection in the ViewModel -->
-                <Button Text="{Binding Options[0]}" Clicked="OnOptionClicked" />
-                <Button Text="{Binding Options[1]}" Clicked="OnOptionClicked" />
-                <Button Text="{Binding Options[2]}" Clicked="OnOptionClicked" />
-                <Button Text="{Binding Options[3]}" Clicked="OnOptionClicked" />
-
-                <!-- Bind the Button's IsEnabled property to the SelectedAnswer property in the ViewModel -->
-                <Button Text="Next Question" Clicked="OnNextQuestionClicked" IsEnabled="{Binding SelectedAnswer != null}" />
-            </StackLayout>
-
-        </VerticalStackLayout>
-    </ScrollView>
+   
 
 </ContentPage>
