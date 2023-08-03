@@ -5,38 +5,32 @@ namespace TriviaQuiz
     //https://the-trivia-api.com/v2/questions - API to get questions
     public partial class MainPage : ContentPage
     {
-        private TriviaQuestion triviaQuestions; // List of trivia questions (you need to populate this)
 
+        private List<TriviaQuestion> triviaQuestions; // List of trivia questions (you need to populate this)
 
         public MainPage()
         {
             InitializeComponent();
+            LoadQuestion();
         }
-      
 
-        private async void LoadQuestion(int index)
+        private async void LoadQuestion()
         {
             string URL = "https://the-trivia-api.com/v2/questions";
-           // Fetch weather data from the API
-                Console.WriteLine("API URL: " + URL);
-                triviaQuestions = await GetQuestionDataAsync(URL);
-                Console.WriteLine("API Response: " + JsonSerializer.Serialize(triviaQuestions));
+            triviaQuestions = await GetQuestionDataAsync(URL);
 
-            // Update the UI with weather information
-            if (triviaQuestions != null)
+            if (triviaQuestions != null && triviaQuestions.Count > 0)
             {
-                QuestionLabel.Text = triviaQuestions.CorrectAnswer;
-                Console.WriteLine("Latitude: " + triviaQuestions.question.Text);
-                Console.WriteLine("Latitude: " + triviaQuestions.ID);
-                Console.WriteLine("Latitude: " + triviaQuestions.Category);
-                Console.WriteLine("Latitude: " + triviaQuestions.CorrectAnswer);
-             
-                //Option1Button.Text = currentQuestion.Options[0];
-                //Option2Button.Text = currentQuestion.Options[1];
-                //Option3Button.Text = currentQuestion.Options[2];
-                //Option4Button.Text = currentQuestion.Options[3];
-            }                 
+                // Load the first question and its options
+                var currentQuestion = triviaQuestions[0];
+                QuestionLabel.Text = currentQuestion.question.Text;
+                Option1Button.Text = currentQuestion.Options[0];
+                Option2Button.Text = currentQuestion.Options[1];
+                Option3Button.Text = currentQuestion.Options[2];
+                Option4Button.Text = currentQuestion.Options[3];
+            }
         }
+
 
         private void OptionButton_Clicked(object sender, EventArgs e)
         {
@@ -65,7 +59,7 @@ namespace TriviaQuiz
             //}
         }
 
-        private async Task<TriviaQuestion> GetQuestionDataAsync(string apiUrl)
+        private async Task<List<TriviaQuestion>> GetQuestionDataAsync(string apiUrl)
         {
             using (var httpClient = new HttpClient())
             {
@@ -74,8 +68,12 @@ namespace TriviaQuiz
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    TriviaQuestion QuestionData = JsonSerializer.Deserialize<TriviaQuestion>(content);
-                    return QuestionData;
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<TriviaQuestion> questionData = JsonSerializer.Deserialize<List<TriviaQuestion>>(content, options);
+                    return questionData;
                 }
 
                 return null;

@@ -28,7 +28,8 @@ namespace TriviaQuiz
         public Questions question { get; set; }
 
         [JsonPropertyName("tags")]
-        public string Tag { get; set; }
+        public List<string> Tags { get; set; }
+
 
         [JsonPropertyName("difficulty")]
         public string Difficulty { get; set; }
