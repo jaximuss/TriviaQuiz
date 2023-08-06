@@ -8,10 +8,10 @@
         <Label x:Name="QuestionLabel" FontSize="20" HorizontalOptions="CenterAndExpand" Margin="20" />
         <StackLayout x:Name="OptionsStackLayout" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
             <!-- Add four buttons for the options -->
-            <Button x:Name="Option1Button" Text="{Binding Options[0]}" Clicked="OptionButton_Clicked" Margin="10"/>
-            <Button x:Name="Option2Button" Text="{Binding Options[1]}" Clicked="OptionButton_Clicked" Margin="10"/>
-            <Button x:Name="Option3Button" Text="{Binding Options[2]}" Clicked="OptionButton_Clicked" Margin="10"/>
-            <Button x:Name="Option4Button" Text="{Binding Options[3]}" Clicked="OptionButton_Clicked" Margin="10"/>
+            <Button x:Name="Option1Button" Text="{Binding}" Clicked="OptionButton_Clicked" Margin="10"/>
+            <Button x:Name="Option2Button" Text="{Binding Options[0]}" Clicked="OptionButton_Clicked" Margin="10"/>
+            <Button x:Name="Option3Button" Text="{Binding Options[1]}" Clicked="OptionButton_Clicked" Margin="10"/>
+            <Button x:Name="Option4Button" Text="{Binding Options[2]}" Clicked="OptionButton_Clicked" Margin="10"/>
         </StackLayout>
     </StackLayout>
 

@@ -21,7 +21,7 @@ namespace TriviaQuiz
         [JsonPropertyName("correctAnswer")]
         public string CorrectAnswer { get; set; }
 
-        [JsonPropertyName("incorrect_answers")]
+        [JsonPropertyName("incorrectAnswers")]
         public List<string> Options { get; set; }
 
         [JsonPropertyName("question")]

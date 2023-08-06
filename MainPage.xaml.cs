@@ -21,16 +21,17 @@ namespace TriviaQuiz
 
             if (triviaQuestions != null && triviaQuestions.Count > 0)
             {
-                // Load the first question and its options
                 var currentQuestion = triviaQuestions[0];
+
+                // Set question text
                 QuestionLabel.Text = currentQuestion.question.Text;
-                Option1Button.Text = currentQuestion.Options[0];
-                Option2Button.Text = currentQuestion.Options[1];
-                Option3Button.Text = currentQuestion.Options[2];
-                Option4Button.Text = currentQuestion.Options[3];
+
+                Option1Button.Text = currentQuestion.CorrectAnswer;
+                Option2Button.Text = currentQuestion.Options[0];
+                Option3Button.Text = currentQuestion.Options[1];
+                Option4Button.Text = currentQuestion.Options[2];
             }
         }
-
 
         private void OptionButton_Clicked(object sender, EventArgs e)
         {
